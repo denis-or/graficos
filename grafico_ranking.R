@@ -188,7 +188,8 @@ ggplot(df, aes(x= Ano, y = forcats::fct_rev(Posição), group = País, colour = 
   geom_text(data = df %>% filter(Ano == 2018), aes(label = País, color = País), hjust = 0, nudge_x = 0.05, fontface="bold", size = 5, show.legend = F) +
   scale_x_continuous(breaks = seq(2000,2018,1), expand = c(0,0)) +
   scale_colour_manual(values = cores) +
-  labs(x = "", y = "", title = " 1. POSIÇÃO (NÚMERO DE PUBLICAÇÕES - CONTAGEM FRACIONÁRIA) ") + expand_limits(x=2020)+
+  labs(x = "", y = "", title = " 1. POSIÇÃO (NÚMERO DE PUBLICAÇÕES - CONTAGEM FRACIONÁRIA) ",
+       caption = "Visualização: Denis de Oliveira Rodrigues\nGithub: denis-or") + expand_limits(x=2020)+
   theme_minimal()+
   theme(plot.title = element_text(size = 18, face = "bold", color = "#22568B", family = "Arial Narrow"),
         plot.title.position = "plot",
