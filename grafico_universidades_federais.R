@@ -1,9 +1,9 @@
 # Pacotes -----------------------------------------------------------------
 library(ggplot2)
 library(sf)
-library(geobr)
-library(ggrepel)
-library(ggtext)
+library(geobr) # devtools::install_github("ipeaGIT/geobr", subdir = "r-package")
+library(ggrepel) # devtools::install_github("slowkow/ggrepel")
+library(ggtext) # remotes::install_github("wilkelab/ggtext")
 
 
 # Importar ----------------------------------------------------------------
