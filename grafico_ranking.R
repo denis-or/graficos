@@ -3,7 +3,7 @@ library(ggplot2)
 library(dplyr)
 library(magrittr)
 
-df <- tibble(País = c("Alemanha","Alemanha",
+df <- tibble::tibble(País = c("Alemanha","Alemanha",
                       "Alemanha","Alemanha","Alemanha","Alemanha","Alemanha",
                       "Alemanha","Alemanha","Alemanha","Alemanha","Alemanha",
                       "Alemanha","Alemanha","Alemanha","Alemanha","Alemanha",
@@ -168,34 +168,62 @@ df <- tibble(País = c("Alemanha","Alemanha",
 
 
 
-cores <- c("#C16B44","#1B6097","#E3B754","#96C66F","#CC3075","#852A6D","#C71E59","#218055","#E58997","#236886",
-           "#41A34F","#EEC1B3","#770F1A","#125577","#AC7DA9","#E08E9F","#D4D056","#E59646","#85C09D","#5F5881")
+cores <- c("#C16B44","#1B6097","#E3B754","#96C66F","#CC3075","#852A6D",
+           "#C71E59","#218055","#E58997","#236886","#41A34F","#EEC1B3",
+           "#770F1A","#125577","#AC7DA9","#E08E9F","#D4D056","#E59646",
+           "#85C09D","#5F5881")
 
-rotulo <- c("China","EUA","Índia","Alemanha","Japão","UK","Rússia","Itália","Coreia do Sul", "França","Brasil",
-            "Canadá","Espanha","Austrália","Irã","Polônia","Turquia","Holanda","Indonésia","Taiwan")
+rotulo <- c("China","EUA","Índia","Alemanha","Japão","UK","Rússia","Itália",
+            "Coreia do Sul", "França","Brasil","Canadá","Espanha","Austrália",
+            "Irã","Polônia","Turquia","Holanda","Indonésia","Taiwan")
 
 posicao <- c("1º","2º","3º","4º","5º","6º","7º","8º","9º","10º",
              "11º","12º","13º","14º","15º","16º","17º","18º","19º","20º")
 
-df <- df %>% mutate(Posição = factor(Posição, levels = posicao),
-                    País = factor(País, levels = rotulo)) %>% 
-  filter(!is.na(Posição))
+df <- df |>
+  dplyr::mutate(Posição = factor(Posição, levels = posicao),
+                País = factor(País, levels = rotulo)) |>
+  dplyr::filter(!is.na(Posição))
 
 
 
-ggplot(df, aes(x= Ano, y = forcats::fct_rev(Posição), group = País, colour = País))+
-  geom_line(size = 1.5, show.legend = F)+
-  geom_text(data = df %>% filter(Ano == 2018), aes(label = País, color = País), hjust = 0, nudge_x = 0.05, fontface="bold", size = 5, show.legend = F) +
-  scale_x_continuous(breaks = seq(2000,2018,1), expand = c(0,0)) +
-  scale_colour_manual(values = cores) +
-  labs(x = "", y = "", title = " 1. POSIÇÃO (NÚMERO DE PUBLICAÇÕES - CONTAGEM FRACIONÁRIA) ",
-       caption = "Visualização: Denis de Oliveira Rodrigues\nGithub: denis-or") + expand_limits(x=2020)+
-  theme_minimal()+
-  theme(plot.title = element_text(size = 18, face = "bold", color = "#22568B", family = "Arial Narrow"),
-        plot.title.position = "plot",
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.grid.major.x = element_line(),
-        axis.text = element_text(size = 12, face = "bold"))
+ggplot2::ggplot(data = df, ggplot2::aes(
+  x = Ano,
+  y = forcats::fct_rev(Posição),
+  group = País,
+  colour = País
+)) +
+  ggplot2::geom_line(size = 1.5, show.legend = F) +
+  ggplot2::geom_text(
+    data = dplyr::filter(df, Ano == 2018),
+    ggplot2::aes(label = País, color = País),
+    hjust = 0,
+    nudge_x = 0.05,
+    fontface = "bold",
+    size = 5,
+    show.legend = F
+  ) +
+  ggplot2::scale_x_continuous(breaks = seq(2000, 2018, 1), expand = c(0, 0)) +
+  ggplot2::scale_colour_manual(values = cores) +
+  ggplot2::labs(
+    x = "",
+    y = "",
+    title = " 1. POSIÇÃO (NÚMERO DE PUBLICAÇÕES - CONTAGEM FRACIONÁRIA) ",
+    caption = "Visualização: Denis de Oliveira Rodrigues\nGithub: denis-or"
+  ) + expand_limits(x = 2020) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.title = element_text(
+      size = 18,
+      face = "bold",
+      color = "#22568B",
+      family = "Arial Narrow"
+    ),
+    plot.title.position = "plot",
+    panel.grid.minor.x = ggplot2::element_blank(),
+    panel.grid.minor.y = ggplot2::element_blank(),
+    panel.grid.major.x = ggplot2::element_line(),
+    axis.text = ggplot2::element_text(size = 12, face = "bold")
+  )
 
 
