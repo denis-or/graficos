@@ -13,7 +13,7 @@ br_mun <- geobr::read_municipal_seat()
 
 ies <-
   readr::read_delim(
-    "SUP_IES_2019.CSV",
+    "man/SUP_IES_2019.CSV",
     delim = "|",
     escape_double = FALSE,
     locale = readr::locale(encoding = "ISO-8859-1"),
