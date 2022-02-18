@@ -34,8 +34,11 @@ parte_final |>
   ) +
   ggplot2::scale_y_continuous(labels = scales::comma) +
   ggplot2::scale_x_date(
-    labels = c(lubridate::year(as.Date("2000-01-01")):lubridate::year(as.Date("2021-08-30"))),
-    breaks = seq.Date(as.Date("2000-01-01"), as.Date("2021-08-30"), "year"),
+    labels = c(lubridate::year(as.Date("2000-01-01")):
+                 lubridate::year(as.Date("2021-08-30"))),
+    breaks = seq.Date(as.Date("2000-01-01"),
+                      as.Date("2021-08-30"),
+                      "year"),
     expand = c(0.01, 0),
     sec.axis = ggplot2::dup_axis()
   ) +
@@ -47,11 +50,21 @@ parte_final |>
   ggplot2::theme(
     axis.line.x = ggplot2::element_blank(),
     axis.line.y = ggplot2::element_blank(),
-    axis.text = ggplot2::element_text(size = 12, family = "Inconsolata"),
-    axis.title.x = ggplot2::element_text(hjust = 0, family = "Inconsolata"),
+    axis.text = ggplot2::element_text(
+      size = 12,
+      family = "Inconsolata"
+      ),
+    axis.title.x = ggplot2::element_text(
+      hjust = 0,
+      family = "Inconsolata"
+      ),
     axis.ticks.length = grid::unit(.25, "cm"),
-    plot.caption = ggplot2::element_text(hjust = 0, family = "Inconsolata"),
-    plot.margin = grid::unit(c(0.2, 0, 0.2, 0.2), "cm"),#TRBL
+    plot.caption = ggplot2::element_text(
+      hjust = 0,
+      family = "Inconsolata"
+      ),
+    plot.margin = grid::unit(c(0.2, 0, 0.2, 0.2), "cm"),
+    #TRBL
     plot.title = ggplot2::element_text(
       family = "Times New Roman",
       face = "bold",
@@ -65,11 +78,8 @@ parte_final |>
       face = "italic"
     ),
     plot.caption.position = "plot",
-    axis.title.y = ggplot2::element_text(
-      hjust = 1,
-      family = "Inconsolata",
-
-    ),
+    axis.title.y = ggplot2::element_text(hjust = 1,
+                                         family = "Inconsolata",),
 
   ) +
   ggplot2::annotate(
@@ -110,18 +120,26 @@ parte_final |>
 
   ) +
   ggplot2::annotate(
-    geom = "curve", x = as.Date("2020-08-30"), y = 60000, xend = as.Date("2021-01-01"), yend = 50000,
-    curvature = -.3, arrow = ggplot2::arrow(length = grid::unit(2, "mm"))
+    geom = "curve",
+    x = as.Date("2020-08-30"),
+    y = 60000,
+    xend = as.Date("2021-01-01"),
+    yend = 50000,
+    curvature = -.3,
+    arrow = ggplot2::arrow(length = grid::unit(2, "mm"))
   ) +
   ggplot2::annotate(
-    geom = "curve", x = as.Date("2020-05-01"), y = 60000, xend = as.Date("2020-01-01"), yend = 50000,
-    curvature = .3, arrow = ggplot2::arrow(length = grid::unit(2, "mm"))
+    geom = "curve",
+    x = as.Date("2020-05-01"),
+    y = 60000,
+    xend = as.Date("2020-01-01"),
+    yend = 50000,
+    curvature = .3,
+    arrow = ggplot2::arrow(length = grid::unit(2, "mm"))
   ) +
-  ggplot2::labs(
-    title = "LIFE vs. DEATH - BRAZIL",
-    # title = "Nascimentos X Óbitos",
-    subtitle = "TIME SERIES FROM 2000 TO 2021",
-    # subtitle = "SÉRIE TEMPORAL DE 2000 A 2021",
-    caption = "Source:\n Sistema de Informação de Mortalidade (SIM)\n Sistema de Informação de Nascidos Vivos (SINASC)\n\nVisualization:\n Denis Rodrigues (denis-or.com.br)")
-    # caption = "Fonte:\n Sistema de Informação de Mortalidade (SIM)\n Sistema de Informação de Nascidos VIvos (SINASC)\n\nVisualização: Denis Rodrigues (denis-or.com.br)")
-
+  ggplot2::labs(title = "LIFE vs. DEATH - BRAZIL",
+                # title = "Nascimentos X Óbitos",
+                subtitle = "TIME SERIES FROM 2000 TO 2021",
+                # subtitle = "SÉRIE TEMPORAL DE 2000 A 2021",
+                caption = "Source:\n Sistema de Informação de Mortalidade (SIM)\n Sistema de Informação de Nascidos Vivos (SINASC)\n\nVisualization:\n Denis Rodrigues (denis-or.com.br)")
+# caption = "Fonte:\n Sistema de Informação de Mortalidade (SIM)\n Sistema de Informação de Nascidos VIvos (SINASC)\n\nVisualização: Denis Rodrigues (denis-or.com.br)")
